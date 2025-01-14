@@ -42,7 +42,7 @@ export async function runBenchmark(type: 'rest' | 'graphql'): Promise<BenchmarkR
         }) : undefined,
       });
 
-      const data = await response.json();  // eslint-disable-line @typescript-eslint/no-unused-vars
+      await response.json();  // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const end = performance.now();
       results.push(end - start);
 
@@ -52,7 +52,8 @@ export async function runBenchmark(type: 'rest' | 'graphql'): Promise<BenchmarkR
         cacheHits++;
       }
 
-    } catch (error) {
+    } catch (_error) {
+      console.error(_error);
       errors++;
     }
   }
